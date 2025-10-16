@@ -67,6 +67,11 @@ async def startup_event():
 def health():
     return {"ok": True, "time": datetime.utcnow().isoformat()}
 
+# Test endpoint to verify Android connectivity
+@app.post("/test/echo")
+def test_echo(data: dict):
+    return {"received": data, "message": "Backend is reachable!"}
+
 
 # AUTH: verify google token and create/get user
 @app.post("/auth/google", response_model=schemas.UserOut)
